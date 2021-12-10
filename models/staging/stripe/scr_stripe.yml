@@ -6,3 +6,13 @@ sources:
       schema: stripe
       tables:
         - name: payment
+          descriptions: Raw payment data.
+          columns:
+            - name: id
+              descriptions: Primary key for payments data.
+              tests:
+                - unique
+                - not_null
+            - name: order_id
+              descriptions: Reference to orders
+              
