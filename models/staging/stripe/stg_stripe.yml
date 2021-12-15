@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: One unique payment per row
+    columns:
+      - name: payment_id
+        description: Primary key for payment
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: Reference to stg_orders primary key
+        tests:
+          - relationships:
+              to: ref('../jaffle_shop/stg_orders')
+              field: order_id
+      - name: payment_method
+        description: Payment Method for each row
+        tests: 
+          - accepted_values:
+              values:
+                - credit_card
+                - coupon 
+                - bank_transfer
+                - gift_card
+      
